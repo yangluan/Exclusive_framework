@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function fontSize() {
+            var deviceWidth = document.documentElement.clientWidth > 768 ? 768 : document.documentElement.clientWidth;
+            document.documentElement.style.fontSize = (deviceWidth / 25) + "px";
+        }
+        fontSize();
+        window.onresize = fontSize;
+    </script>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            font-size: 16px;
+            -webkit-text-size-adjust: none;
+        }
+        #app {
+            height: 100%;
+        }
+        #app * {
+            box-sizing: border-box;
+            font-family: Helvetica;
+        }
+    </style>
+
+</head>
+<body>
+
+<div id="app">
+    <!--  导航组件 -->
+    <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
+</div>
+<script src="js/plugin/sea.js"></script>
+<script src="js/plugin/main.js"></script>
+<script src="js/plugin/vue.js"></script>
+<script src="js/plugin/vue-router.js"></script>
+<script>
+    seajs.use(["js/plugin/app"], function() {
+        Vue.router.goPath("/application");
+    });
+</script>
+
+</body>
+</html>
